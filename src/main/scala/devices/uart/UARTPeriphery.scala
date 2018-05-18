@@ -10,7 +10,7 @@ import freechips.rocketchip.subsystem.{BaseSubsystem, PeripheryBusKey}
 case object PeripheryUARTKey extends Field[Seq[UARTParams]]
 
 trait HasPeripheryUART { this: BaseSubsystem =>
-  private val divinit = (p(PeripheryBusKey).frequency / 115200).toInt
+  private val divinit = (p(PeripheryBusKey).frequency / 3686400).toInt
   val uartParams = p(PeripheryUARTKey).map(_.copy(divisorInit = divinit))
   val uarts = uartParams.zipWithIndex.map { case(params, i) =>
     val name = Some(s"uart_$i")
